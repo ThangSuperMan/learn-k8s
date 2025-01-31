@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-kube-ios
+  labels:
+    app: mobile
+spec:
+  containers:
+    - image: hello-kube:latest
+      name: hello-kube
+      ports:
+        - containerPort: 3000
+          protocol: TCP
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-kube-android
+  labels:
+    app: mobile
+spec:
+  containers:
+    - image: hello-kube:latest
+      name: hello-kube
+      ports:
+        - containerPort: 3000
+          protocol: TCP
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-kube-api
+  labels:
+    app: api
+spec:
+  containers:
+    - image: hello-kube:latest
+      name: hello-kube
+      ports:
+        - containerPort: 3000
+          protocol: TCP

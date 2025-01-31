@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: hello-rs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-kube
+  template:
+    metadata:
+      labels:
+        app: hello-kube
+    spec:
+      containers:
+        - image: hello-kube:latest
+          name: hello-container-name
+          ports:
+            - containerPort: 3000

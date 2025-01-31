@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: app
+    version: green
+  ports:
+    - protocol: TCP
+      port: 27018
+      targetPort: 3000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+        version: green
+    spec:
+      containers:
+        - image: 080196/hello-kube
+          name: hello-container
+          ports:
+            - containerPort: 3000

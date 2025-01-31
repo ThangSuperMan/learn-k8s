@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ssd-monitor
+spec:
+  selector:
+    matchLabels:
+      app: ssd-monitor
+  template:
+    metadata:
+      labels:
+        app: ssd-monitor
+    spec:
+      # Just provision pod when nodes that labels: disk equals ssd
+      nodeSelector:
+        disk: ssd
+      containers:
+        - name: main
+          image: luksa/ssd-monitor
